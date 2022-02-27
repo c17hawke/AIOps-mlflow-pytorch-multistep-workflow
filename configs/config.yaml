@@ -4,5 +4,10 @@ artifacts:
   KEY: value
 
 source_data_dirs:
-  - path_to_data_1
-  - path_to_data_1
+  data: data
+
+
+params:
+  BATCH_SIZE: value
+  TEST_BATCH_SIZE: value
+
