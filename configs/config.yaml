@@ -1,7 +1,10 @@
 # It contains all the configs required in the project
 
-artifacts:
-  KEY: value
+artifacts: 
+  artifacts_dir: artifacts
+  model_config_dir: model_config
+  test_loader_bin: test_loader.bin
+  train_loader_bin: train_loader.bin
 
 source_data_dirs:
   data: data
@@ -10,4 +13,10 @@ source_data_dirs:
 params:
   BATCH_SIZE: 32
   TEST_BATCH_SIZE: 1000
+  LR: 0.01
+  GAMMA: 0.7
+  SEED: 42
+  LOG_INTERVAL: 10
+  DRY_RUN: False
+  EPOCHS: 1
 
