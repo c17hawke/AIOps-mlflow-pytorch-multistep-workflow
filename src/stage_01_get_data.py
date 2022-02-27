@@ -7,6 +7,7 @@ import mlflow
 import mlflow.pytorch
 import logging
 from src.utils.common import read_yaml, create_directories
+from src.utils.model_utils import save_binary
 import random
 
 
@@ -50,6 +51,19 @@ def main(config_path):
     logging.info("defining training and testing data loader")
     train_loader = torch.utils.data.DataLoader(train, **train_kwargs)
     test_loader = torch.utils.data.DataLoader(test, **test_kwargs)
+    
+    artifacts = config["artifacts"]
+    model_config_dir = os.path.join(artifacts["artifacts_dir"], artifacts["model_config_dir"])
+    create_directories([model_config_dir])
+    train_loader_bin_file = artifacts["train_loader_bin"]
+    train_loader_bin_filepath = os.path.join(model_config_dir, train_loader_bin_file)
+    test_loader_bin_file = artifacts["test_loader_bin"]
+    test_loader_bin_filepath = os.path.join(model_config_dir, test_loader_bin_file)
+    
+    save_binary(train_loader, train_loader_bin_filepath)
+    save_binary(test_loader, test_loader_bin_filepath)
+
+
 
 
 if __name__ == '__main__':
