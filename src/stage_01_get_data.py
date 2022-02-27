@@ -24,24 +24,30 @@ def main(config_path):
     ## read config files
     config = read_yaml(config_path)
 
+    logging.info("define training kwargs")
     train_kwargs = {"batch_size": config["params"]["BATCH_SIZE"]}
     test_kwargs = {"batch_size": config["params"]["TEST_BATCH_SIZE"]}
 
+    logging.info("updating device configuration as per cuda availablity")
     device_config = {"DEVICE": 'cuda' if torch.cuda.is_available() else 'cpu'}
     config.update(device_config)
 
-    if config.DEVICE == "cuda":
+
+    if config["DEVICE"] == "cuda":
         cuda_kwargs = {"num_workers": 1, "pin_memory": True, "shuffle": True}
         train_kwargs.update(cuda_kwargs)
         test_kwargs.update(cuda_kwargs)
     
+    logging.info("transforms added")
     transform = transforms.Compose(
     [transforms.ToTensor()]
     )
     
+    logging.info("downloading training and testing data")
     train = datasets.MNIST(config["source_data_dirs"]["data"], train=True, download=True, transform=transform)
     test = datasets.MNIST(config["source_data_dirs"]["data"], train=False, download=True, transform=transform)
 
+    logging.info("defining training and testing data loader")
     train_loader = torch.utils.data.DataLoader(train, **train_kwargs)
     test_loader = torch.utils.data.DataLoader(test, **test_kwargs)
 

@@ -8,6 +8,6 @@ source_data_dirs:
 
 
 params:
-  BATCH_SIZE: value
-  TEST_BATCH_SIZE: value
+  BATCH_SIZE: 32
+  TEST_BATCH_SIZE: 1000
 
