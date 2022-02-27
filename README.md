@@ -1,29 +1,24 @@
-# generic-python-project-template
-generic-python-project-template
+![](https://socialify.git.ci/c17hawke/AIOps-mlflow-pytorch-multistep-workflow/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark)
+
+
+# AIOps-mlflow-pytorch-multistep-workflow
+AIOps-mlflow-pytorch-multistep-workflow
 
 ## STEPS -
 
-### STEP 01- Create a repository by using template repository
+### STEP 01- Clone this new repository
 
-### STEP 02- Clone the new repository
-
-### STEP 03- Create a conda environment after opening the repository in VSCODE
-
-```bash
-conda create --prefix ./env python=3.7 -y
+### STEP 02- run init_setup.bash to create environment
+```bash 
+bash init_setup.sh
 ```
 
+### STEP 03- Activate the new environment - 
 ```bash
 conda activate ./env
 ```
-OR
-```bash
-source activate ./env
-```
 
-### STEP 04- install the requirements
+### STEP 03- to run this project -
 ```bash
-pip install -r requirements.txt
+mlflow run . --no-conda
 ```
-
-### STEP 06- commit and push the changes to the remote repository
