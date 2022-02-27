@@ -1,0 +1,17 @@
+name: AIOps-mlflow-pytorch-multistep-workflow
+
+conda_env: conda.yaml
+
+entry_points:
+    main:
+        command: "python src/main.py"
+
+    get_data:
+        parameters:
+            config: {type: str, default: configs/config.yaml}
+        command: "python src/stage_01_get_data.py --config={config}"
+
+    train:
+        parameters:
+            config: {type: str, default: configs/config.yaml}
+        command: "python src/stage_03_train.py --config={config}" 
