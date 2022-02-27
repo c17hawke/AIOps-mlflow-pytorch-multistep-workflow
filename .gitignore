@@ -141,3 +141,4 @@ configs/secrets.yaml
 
 data/
 *.bin
+mlruns/
